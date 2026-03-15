@@ -1,0 +1,48 @@
+{
+  "name": "migrate-sql",
+  "version": "1.0.0",
+  "description": "Zero-dependency SQL migration runner. Plain SQL files, database-agnostic, with CLI.",
+  "author": "Jorge Morais",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "migrate-sql": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0",
+    "tsx": "^4.19.0"
+  },
+  "keywords": [
+    "migration",
+    "sql",
+    "database",
+    "postgres",
+    "sqlite",
+    "schema",
+    "cli"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mopanc/migrate-sql"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
