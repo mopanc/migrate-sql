@@ -32,7 +32,8 @@ export function scanMigrations(directory: string): MigrationFile[] {
       map.set(id, { number: num, name, upPath: null, downPath: null })
     }
 
-    const entry = map.get(id)!
+    const entry = map.get(id)
+    if (!entry) continue
     const fullPath = join(dir, file)
 
     if (direction === 'up') {

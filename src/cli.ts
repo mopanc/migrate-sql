@@ -69,7 +69,7 @@ async function main() {
   }
 
   const adapter = await createAdapter(dbUrl)
-  const migrator = createMigrator({ directory: values.dir!, table: values.table })
+  const migrator = createMigrator({ directory: values.dir ?? './migrations', table: values.table })
 
   try {
     switch (command) {
