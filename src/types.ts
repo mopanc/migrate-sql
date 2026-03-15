@@ -30,6 +30,7 @@ export interface MigrationFile {
 export interface MigrationRecord {
   id: string
   applied_at: string
+  checksum: string | null
 }
 
 export interface MigrationStatus {
@@ -40,4 +41,41 @@ export interface MigrationStatus {
 export interface MigrationResult {
   applied: string[]
   skipped: string[]
+}
+
+export interface MigrationInfo {
+  /** Current database version (last applied migration ID, or null) */
+  version: string | null
+  /** When the last migration was applied */
+  lastAppliedAt: string | null
+  /** Total number of migrations on disk */
+  total: number
+  /** Number of applied migrations */
+  appliedCount: number
+  /** Number of pending migrations */
+  pendingCount: number
+  /** List of applied migrations with timestamps and checksums */
+  applied: MigrationRecord[]
+  /** List of pending migration IDs */
+  pending: string[]
+}
+
+export interface ValidationIssue {
+  id: string
+  type: 'checksum_mismatch' | 'missing_file' | 'not_applied'
+  message: string
+}
+
+export interface ValidationResult {
+  valid: boolean
+  issues: ValidationIssue[]
+}
+
+export interface DryRunStep {
+  id: string
+  sql: string
+}
+
+export interface DryRunResult {
+  steps: DryRunStep[]
 }
